@@ -8,7 +8,7 @@ only server side.
 
 Application hosted on Heroku 
 
-<!-- https://vast-stream-21858.herokuapp.com/ -->
+https://fierce-falls-57821.herokuapp.com/
 
 # Motivation
 
@@ -81,9 +81,18 @@ python test_app.py # if running locally
 * Base URL: Currently this application is only hosted locally. The backend is hosted at ``
 * Authentication: This application use Auth0 service
 
-* Use this link to get new token [Get Token](https://fsnddd.us.auth0.com//authorize?audience=Capstone&response_type=token&client_id=kyyTrXCvJ2kUB22lgF53Mo2R76a996NO&redirect_uri=https://localhost:8080/login-results)
+* Use this link to get new token [Get Token](https://fsnddd.us.auth0.com/authorize?audience=Capstone&response_type=token&client_id=kyyTrXCvJ2kUB22lgF53Mo2R76a996NO&redirect_uri=https://localhost:8080/login-results)
 
 Users in this application are:
+
+Assistant:
+Email: testassistant@gmail.com
+Password: Test1234
+
+Manager:
+Email: testmanager@gmail.com
+Password: Test1234
+
 
 
 ### Error Handling
@@ -108,24 +117,205 @@ The API will return three types of errors:
 ### Endpoints
 
 #### GET /artists
+* General: Return list of artists in Database
+* Sample: `curl -X GET 'https://fierce-falls-57821.herokuapp.com/artists' \
+-H 'Authorization: Bearer Assisant_Token'`<br>
+
+        {
+            "artists": [
+                {
+                    "city": "SA",
+                    "genres": [],
+                    "id": 1,
+                    "name": "Mohammad",
+                    "phone": "111-111-1111",
+                    "seeking_description": "gfgfgfgf",
+                    "seeking_venue": true,
+                    "shows": [],
+                    "state": "SA"
+                }
+            ],
+            "success": true
+        }
 
 #### GET /venues
+* General: Return list of venues in Database
+* Sample: `curl -X GET 'https://fierce-falls-57821.herokuapp.com/venues' \
+-H 'Authorization: Bearer Assisant_Token'`<br>
+
+        {
+            "success": true,
+            "venues": [
+                {
+                    "address": "self.address",
+                    "city": "self.city",
+                    "genres": [],
+                    "id": 1,
+                    "name": "self.name",
+                    "phone": "self.phone",
+                    "seeking_description": "self.seeking_description",
+                    "seeking_talent": false,
+                    "shows": [
+                        {
+                            "id": 2
+                        }
+                    ],
+                    "state": "self.state"
+                }
+            ]
+        }
 
 #### GET /shows
+* General: Return list of shows in Database
+* Sample: `curl -X GET 'https://fierce-falls-57821.herokuapp.com/shows' \
+-H 'Authorization: Bearer Assisant_Token'`<br>
+
+        {
+            "shows": [
+                {
+                    "artist_name": "Mohammad",
+                    "id": 2,
+                    "venue_name": "self.name"
+                }
+            ],
+            "success": true
+        }
 
 #### POST /artists
+* General: Add artist in DB
+* Sample: `curl -X POST 'https://fierce-falls-57821.herokuapp.com/artists' \
+-H 'Authorization: Bearer Manager_Token' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+            "name": "Mohammad",
+            "city": "SA",
+            "state": "SA",
+            "phone": "111-111-1111",
+            "genres": [],
+            "seeking_venue": true,
+            "seeking_description": "gfgfgfgf"
+        }'`<br>
+
+        {
+            "created_id": 1,
+            "success": true
+        }
 
 #### POST /venues
+* General: Add venue in DB
+* Sample: `curl -X POST 'https://fierce-falls-57821.herokuapp.com/venues' \
+-H 'Authorization: Bearer Manager_Token' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "name": "self.name",
+    "city": "self.city",
+    "state": "self.state",
+    "address": "self.address",
+    "phone": "self.phone",
+    "genres": [],
+    "seeking_talent": false,
+    "seeking_description": "self.seeking_description"
+}'`<br>
+
+        {
+            "created_id": 1,
+            "success": true
+        }
+
 
 #### POST /shows
+* General: Add Show in DB if artist and venue exist
+* Sample: `curl -X POST 'https://fierce-falls-57821.herokuapp.com/shows' \
+-H 'Authorization: Bearer Manager_Token' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "venue_id" : 1,
+    "artist_id" : 1,
+    "start_time" : "12/12/2012"
+}'`<br>
+
+        {
+            "created_id": 1,
+            "success": true
+        }
 
 #### PATCH /artists/<artist_id>
+* General: Update Artist in DB
+* Sample: `curl -X PATCH 'https://fierce-falls-57821.herokuapp.com/artists/1' \
+-H 'Authorization: Bearer Manager_Token' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Majwed"
+}'`<br>
+
+        {
+            "artist": {
+                "city": "SA",
+                "genres": [],
+                "id": 1,
+                "name": "Majwed",
+                "phone": "111-111-1111",
+                "seeking_description": "gfgfgfgf",
+                "seeking_venue": true,
+                "shows": [
+                    {
+                        "id": 2
+                    }
+                ],
+                "state": "SA"
+            },
+            "success": true
+        }
 
 #### PATCH /venues/<venue_id>
+* General: Update Venue in DB
+* Sample: `curl -X PATCH 'https://fierce-falls-57821.herokuapp.com/venues/1' \
+-H 'Authorization: Bearer Manager_Token' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Majwed"
+}'`<br>
+
+        {
+            "success": true,
+            "venue": {
+                "address": "self.address",
+                "city": "self.city",
+                "genres": [],
+                "id": 1,
+                "name": "Majwed",
+                "phone": "self.phone",
+                "seeking_description": "self.seeking_description",
+                "seeking_talent": false,
+                "shows": [
+                    {
+                        "id": 2
+                    }
+                ],
+                "state": "self.state"
+            }
+        }
 
 #### DELETE /artists/<artist_id>
+* General: Delete Artist
+* Sample: `curl -X DELETE 'https://fierce-falls-57821.herokuapp.com/artists/2' \
+-H 'Authorization: Bearer Manager_Token'`<br>
+
+        {
+            "delete_id": 2,
+            "success": true
+        }
 
 #### DELETE /venues/<venue_id>
+* General: Delete Venue
+* Sample: `curl -X DELETE 'https://fierce-falls-57821.herokuapp.com/venues/2' \
+-H 'Authorization: Bearer Manager_Token'`<br>
+
+        {
+            "delete_id": 2,
+            "success": true
+        }
+
 
 # Postman user
 in this repo there is collection file exported with latest postman version
