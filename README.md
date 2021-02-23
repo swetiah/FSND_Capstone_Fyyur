@@ -81,7 +81,7 @@ python test_app.py # if running locally
 * Base URL: Currently this application is only hosted locally. The backend is hosted at ``
 * Authentication: This application use Auth0 service
 
-* Use this link to get new token [Get Token](https://fsnd-udacity.eu.auth0.com/authorize?audience=CastingAgency&response_type=token&client_id=WMvUqnD1GAJg2OH06i4Musq0vllhysMh&redirect_uri=https://localhost:8080/login-results)
+* Use this link to get new token [Get Token](https://fsnddd.us.auth0.com//authorize?audience=Capstone&response_type=token&client_id=kyyTrXCvJ2kUB22lgF53Mo2R76a996NO&redirect_uri=https://localhost:8080/login-results)
 
 Users in this application are:
 
