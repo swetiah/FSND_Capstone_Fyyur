@@ -390,7 +390,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"venue_id\" : 3,\n    \"artist_id\" : 3,\n    \"start_time\" : \"12/12/2012\"\n}",
+							"raw": "{\n    \"venue_id\" : 1,\n    \"artist_id\" : 1,\n    \"start_time\" : \"12/12/2012\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -468,15 +468,6 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Majwed\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{host}}/artists/2",
 							"host": [
@@ -495,15 +486,6 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Majwed\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{host}}/venues/2",
 							"host": [
