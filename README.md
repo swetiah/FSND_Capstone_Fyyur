@@ -78,7 +78,7 @@ python test_app.py # if running locally
 
 ### Getting Started
 
-* Base URL: Currently this application is only hosted locally. The backend is hosted at ``
+* Base URL: The Backend is hosted on heroku [here](https://fierce-falls-57821.herokuapp.com/)
 * Authentication: This application use Auth0 service
 
 * Use this link to get new token [Get Token](https://fsnddd.us.auth0.com/authorize?audience=Capstone&response_type=token&client_id=kyyTrXCvJ2kUB22lgF53Mo2R76a996NO&redirect_uri=https://localhost:8080/login-results)
