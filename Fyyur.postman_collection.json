@@ -66,7 +66,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n            \"name\": \"Mohammad\",\n            \"city\": \"SA\",\n            \"state\": \"SA\",\n            \"phone\": \"111-111-1111\",\n            \"genres\": [],\n            \"seeking_venue\": true,\n            \"seeking_description\": \"gfgfgfgf\",\n            \"shows\": []\n        }",
+							"raw": "{\n            \"name\": \"Mohammad\",\n            \"city\": \"SA\",\n            \"state\": \"SA\",\n            \"phone\": \"111-111-1111\",\n            \"genres\": [],\n            \"seeking_venue\": true,\n            \"seeking_description\": \"gfgfgfgf\",\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n            \"name\": \"Mohammad\",\n            \"city\": \"SA\",\n            \"state\": \"SA\",\n            \"phone\": \"111-111-1111\",\n            \"genres\": [],\n            \"seeking_venue\": true,\n            \"seeking_description\": \"gfgfgfgf\",\n            \"shows\": []\n        }",
+							"raw": "{\n            \"name\": \"Mohammad\",\n            \"city\": \"SA\",\n            \"state\": \"SA\",\n            \"phone\": \"111-111-1111\",\n            \"genres\": [],\n            \"seeking_venue\": true,\n            \"seeking_description\": \"gfgfgfgf\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -478,13 +478,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/venues/1",
+							"raw": "{{host}}/artists/2",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"venues",
-								"1"
+								"artists",
+								"2"
 							]
 						}
 					},
@@ -505,13 +505,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/venues/1",
+							"raw": "{{host}}/venues/2",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"venues",
-								"1"
+								"2"
 							]
 						}
 					},
