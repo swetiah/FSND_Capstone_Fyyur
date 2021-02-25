@@ -85,15 +85,14 @@ python test_app.py # if running locally
 
 Users in this application are:
 
-Assistant:
-Email: testassistant@gmail.com
+Assistant: Can Views Artists, Venues, Shows <br>
+Email: testassistant@gmail.com<br>
 Password: Test1234
 
-Manager:
-Email: testmanager@gmail.com
+Manager: Assistant Access + CURD on Artist, Venue, Show<br>
+Email: testmanager@gmail.com<br>
 Password: Test1234
-
-
+<br><br>
 
 ### Error Handling
 

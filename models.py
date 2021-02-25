@@ -32,9 +32,13 @@ def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
 
+
+'''
 #----------------------------------------------------------------------------#
 # Models.
 #----------------------------------------------------------------------------#
+'''
+
 
 class Common(db.Model):
     __abstract__ = True
@@ -68,25 +72,24 @@ class Venue(Common):
 
     def __repr__(self):
         return f'Venue ID {self.id} : Venue Name: {self.name}'
-    
-    def __init__(self,name,city,state,address,phone,genres,seeking_talent,seeking_description):
-        self.name =name 
-        self.city =city 
-        self.state =state 
-        self.address =address 
-        self.phone =phone 
-        self.genres =genres 
-        self.seeking_talent =seeking_talent 
-        self.seeking_description =seeking_description 
+
+    def __init__(self, name, city, state, address, phone,
+                 genres, seeking_talent, seeking_description):
+        self.name = name
+        self.city = city
+        self.state = state
+        self.address = address
+        self.phone = phone
+        self.genres = genres
+        self.seeking_talent = seeking_talent
+        self.seeking_description = seeking_description
         self.shows = []
 
-
-    
     def format(self):
         shows = []
         for show in self.shows:
             shows.append({
-                'id':show.id,
+                'id': show.id,
             })
         return {
             'id': self.id,
@@ -98,7 +101,7 @@ class Venue(Common):
             'genres': self.genres,
             'seeking_talent': self.seeking_talent,
             'seeking_description': self.seeking_description,
-            'shows' : shows
+            'shows': shows
         }
 
 
@@ -117,22 +120,23 @@ class Artist(Common):
 
     def __repr__(self):
         return f'Artist ID {self.id} : Artist Name: {self.name}'
-    
-    def __init__(self,name,city,state,phone,genres,seeking_venue,seeking_description):
-        self.name =name 
-        self.city =city 
-        self.state =state 
-        self.phone =phone 
-        self.genres =genres 
-        self.seeking_venue =seeking_venue 
-        self.seeking_description =seeking_description 
+
+    def __init__(self, name, city, state, phone, genres,
+                 seeking_venue, seeking_description):
+        self.name = name
+        self.city = city
+        self.state = state
+        self.phone = phone
+        self.genres = genres
+        self.seeking_venue = seeking_venue
+        self.seeking_description = seeking_description
         self.shows = []
-    
+
     def format(self):
         shows = []
         for show in self.shows:
             shows.append({
-                'id':show.id,
+                'id': show.id,
             })
         return {
             'id': self.id,
@@ -143,7 +147,7 @@ class Artist(Common):
             'genres': self.genres,
             'seeking_venue': self.seeking_venue,
             'seeking_description': self.seeking_description,
-            'shows' : shows
+            'shows': shows
         }
 
 
@@ -156,12 +160,11 @@ class Show(Common):
         'artist.id'), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
-    
-    def __init__(self,venueID,artistID,startTime):
+
+    def __init__(self, venueID, artistID, startTime):
         self.artist_id = artistID
         self.venue_id = venueID
         self.start_time = startTime
-
 
     def __repr__(self):
         return f'Show ID {self.id}'

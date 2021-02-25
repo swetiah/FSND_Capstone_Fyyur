@@ -150,7 +150,7 @@ def create_app():
 
     @app.route('/artists/<int:artist_id>', methods=['PATCH'])
     @requires_auth('patch:artists')
-    def edit_artist(self,artist_id):
+    def edit_artist(self, artist_id):
         body = request.get_json()
 
         if body is None:
@@ -166,13 +166,15 @@ def create_app():
 
         artist = Artist.query.get(artist_id)
 
+        seekingDescription = artist.seeking_description
+
         artist.name = name or artist.name
         artist.city = city or artist.city
         artist.state = state or artist.state
         artist.phone = phone or artist.phone
         artist.genres = genres or artist.genres
         artist.seeking_venue = seeking_venue or artist.seeking_venue
-        artist.seeking_description = seeking_description or artist.seeking_description
+        artist.seeking_description = seeking_description or seekingDescription
 
         try:
             artist.update()
@@ -184,10 +186,9 @@ def create_app():
             print(e)
             abort(400)
 
-
     @app.route('/venues/<int:venue_id>', methods=['PATCH'])
     @requires_auth('patch:venue')
-    def edit_venue(self,venue_id):
+    def edit_venue(self, venue_id):
         body = request.get_json()
 
         if body is None:
@@ -204,15 +205,16 @@ def create_app():
 
         venue = Venue.query.get(venue_id)
 
-        venue.name=name or venue.name
-        venue.city=city or venue.city
-        venue.state=state or venue.state
-        venue.phone=phone or venue.phone
-        venue.address=address or venue.address
-        venue.genres=genres or venue.genres
-        venue.seeking_talent=seeking_talent or venue.seeking_talent
-        venue.seeking_description=seeking_description or venue.seeking_description
+        seekingDescription = venue.seeking_description
 
+        venue.name = name or venue.name
+        venue.city = city or venue.city
+        venue.state = state or venue.state
+        venue.phone = phone or venue.phone
+        venue.address = address or venue.address
+        venue.genres = genres or venue.genres
+        venue.seeking_talent = seeking_talent or venue.seeking_talent
+        venue.seeking_description = seeking_description or seekingDescription
 
         try:
             venue.update()
@@ -226,34 +228,33 @@ def create_app():
 
     @app.route('/artists/<int:artist_id>', methods=['DELETE'])
     @requires_auth('delete:artists')
-    def delete_artist(self,artist_id):
+    def delete_artist(self, artist_id):
         artist = Artist.query.get(artist_id)
 
         if artist is None:
             abort(404)
-        
+
         artist.delete()
 
         return jsonify({
-            "success":True,
-            "delete_id":artist_id
+            "success": True,
+            "delete_id": artist_id
         })
-    
+
     @app.route('/venues/<int:venue_id>', methods=['DELETE'])
     @requires_auth('delete:venue')
-    def delete_venue(self,venue_id):
+    def delete_venue(self, venue_id):
         venue = Venue.query.get(venue_id)
 
         if venue is None:
             abort(404)
-        
+
         venue.delete()
 
         return jsonify({
-            "success":True,
-            "delete_id":venue_id
+            "success": True,
+            "delete_id": venue_id
         })
-
 
     # Error Handling
 

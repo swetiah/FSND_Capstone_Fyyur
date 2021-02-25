@@ -17,14 +17,14 @@ Manager = {
 }
 
 artist = {
-            "name": "Mohammad",
+    "name": "Mohammad",
             "city": "SA",
             "state": "SA",
             "phone": "111-111-1111",
             "genres": [],
             "seeking_venue": True,
             "seeking_description": "gfgfgfgf"
-        }
+}
 
 venue = {
     "name": "self.name",
@@ -38,12 +38,13 @@ venue = {
 }
 
 show = {
-    "venue_id" : 1,
-    "artist_id" : 1,
-    "start_time" : "12/12/2012"
+    "venue_id": 1,
+    "artist_id": 1,
+    "start_time": "12/12/2012"
 }
 
 database_path = os.environ['DATABASE_URL']
+
 
 class CapstoneTest(unittest.TestCase):
     """This class represents the capstone test case"""
@@ -69,62 +70,71 @@ class CapstoneTest(unittest.TestCase):
 # Successful Tests
 
     def test_get_artists(self):
-        res = self.client().get('/artists',headers=Assistant)
+        res = self.client().get('/artists', headers=Assistant)
 
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
-    
+
     def test_get_venues(self):
-        res = self.client().get('/venues',headers=Assistant)
+        res = self.client().get('/venues', headers=Assistant)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
-    
+
     def test_get_shows(self):
-        res = self.client().get('/shows',headers=Assistant)
+        res = self.client().get('/shows', headers=Assistant)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_post_artist(self):
-        res = self.client().post('/artists',headers=Manager,json=artist)
+        res = self.client().post('/artists', headers=Manager, json=artist)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_post_venue(self):
-        res = self.client().post('/venues',headers=Manager,json=venue)
+        res = self.client().post('/venues', headers=Manager, json=venue)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_post_shows(self):
-        res = self.client().post('/shows',headers=Manager,json=show)
+        res = self.client().post('/shows', headers=Manager, json=show)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_patch_artist(self):
-        res = self.client().patch('/artists/1',headers=Manager,json={ 'name' : 'majed',})
+        res = self.client().patch(
+            '/artists/1',
+            headers=Manager,
+            json={
+                'name': 'majed',
+            })
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_patch_venue(self):
-        res = self.client().patch('/venues/1',headers=Manager,json={ 'name' : 'Best venue'})
+        res = self.client().patch(
+            '/venues/1',
+            headers=Manager,
+            json={
+                'name': 'Best venue'})
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
-    
+
     def test_delete_artist(self):
-        res = self.client().delete('/artists/2',headers=Manager)
+        res = self.client().delete('/artists/2', headers=Manager)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
 
     def test_delete_venue(self):
-        res = self.client().delete('/venues/2',headers=Manager)
+        res = self.client().delete('/venues/2', headers=Manager)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
@@ -137,13 +147,13 @@ class CapstoneTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
+
     def test_not_get_venues(self):
         res = self.client().get('/venues')
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
-    
+
     def test_not_get_shows(self):
         res = self.client().get('/shows')
 
@@ -151,35 +161,35 @@ class CapstoneTest(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
 
     def test_not_post_artist(self):
-        res = self.client().post('/artists',json=artist)
+        res = self.client().post('/artists', json=artist)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
 
     def test_not_post_venue(self):
-        res = self.client().post('/venues',json=venue)
+        res = self.client().post('/venues', json=venue)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
 
     def test_not_post_shows(self):
-        res = self.client().post('/shows',json=show)
+        res = self.client().post('/shows', json=show)
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
 
     def test_not_patch_artist(self):
-        res = self.client().patch('/artists/1',json={ 'name' : 'majed',})
+        res = self.client().patch('/artists/1', json={'name': 'majed', })
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
 
     def test_not_patch_venue(self):
-        res = self.client().patch('/venues/1',json={ 'name' : 'Best venue'})
+        res = self.client().patch('/venues/1', json={'name': 'Best venue'})
 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
-    
+
     def test_not_delete_artist(self):
         res = self.client().delete('/artists/2')
 
